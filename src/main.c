@@ -9,6 +9,8 @@
 // App-specific data
 Window *window; // All apps must have at least one window
 TextLayer *time_layer; // The clock
+static BitmapLayer *s_background_layer;
+static GBitmap *s_background_bitmap;
 
 // Called once per second
 static void handle_second_tick(struct tm* tick_time, TimeUnits units_changed) {
@@ -28,6 +30,13 @@ static void do_init(void) {
   window_stack_push(window, true);
   window_set_background_color(window, GColorWhite);
 
+	// Create GBitmap, then set to created BitmapLayer
+	s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND);
+	s_background_layer = bitmap_layer_create(GRect(0, 0, 144, 168));
+	bitmap_layer_set_bitmap(s_background_layer, s_background_bitmap);
+	layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_background_layer));
+
+
   // Init the text layer used to show the time
   time_layer = text_layer_create(GRect(29, 54, 144-40 /* width */, 168-54 /* height */));
   text_layer_set_text_color(time_layer, GColorBlack);
@@ -45,6 +54,11 @@ static void do_init(void) {
 }
 
 static void do_deinit(void) {
+	// Destroy GBitmap
+	gbitmap_destroy(s_background_bitmap);
+
+	// Destroy BitmapLayer
+	bitmap_layer_destroy(s_background_layer);
   text_layer_destroy(time_layer);
   window_destroy(window);
 }
