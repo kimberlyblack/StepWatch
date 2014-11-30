@@ -1,15 +1,26 @@
 {
-  "uuid": "552f62ca-eed6-4493-a685-611fea4da1c3",
-  "shortName": "StepWatch",
-  "longName": "Step Watch",
-  "companyName": "Black Oak Software",
-  "versionCode": 1,
-  "versionLabel": "1.0",
-  "watchapp": {
-    "watchface": true
-  },
-  "appKeys": {},
-  "resources": {
-    "media": []
-  }
+    "appKeys": {},
+    "capabilities": [
+        "location",
+        "configurable"
+    ],
+    "companyName": "kim@kimberlyblack.com",
+    "longName": "Step Watch",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/background.png",
+                "name": "IMAGE_BACKGROUND",
+                "type": "png"
+            }
+        ]
+    },
+    "shortName": "StepWatch",
+    "uuid": "552f62ca-eed6-4493-a685-611fea4da1c3",
+    "versionCode": 1,
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
 }
